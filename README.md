@@ -45,7 +45,7 @@ The following functions are made available:
 :FigwheelReset " Stops, cleans and starts Figwheel autobuild
 :FigwheelStop  " Stops Figwheel autobuild
 :FigwheelStatus " Gets the current state of Figwheel
-:Figgieback " Piggiebacks onto the Fighweel browser REPL
+:Figgieback " Piggiebacks onto the Figwheel browser REPL
 ```
 
 The above functions map to the control functions defined by the Figwheel repl. You can read more [here](https://github.com/bhauman/lein-figwheel)
