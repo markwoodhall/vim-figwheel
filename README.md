@@ -48,7 +48,7 @@ The following functions are made available:
 :Figgieback " Piggiebacks onto the Figwheel browser REPL
 ```
 
-The above functions map to the control functions defined by the Figwheel repl. You can read more [here](https://github.com/bhauman/lein-figwheel)
+The above functions map to the control functions defined by the Figwheel REPL. You can read more [here](https://github.com/bhauman/lein-figwheel)
 
 ```clojure
  (stop-autobuild)            ;; stops Figwheel autobuilder
