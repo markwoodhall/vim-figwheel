@@ -1,6 +1,6 @@
 ## Purpose
 
-This plugin makes available the control functions defined by the [Figwheel](https://github.com/bhauman/lein-figwheel) as vimscript functions.
+This plugin makes available the control functions defined by the [Figwheel](https://github.com/bhauman/lein-figwheel) REPL as vimscript functions.
 
 This enables you to do a few things:
 
