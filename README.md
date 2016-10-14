@@ -4,13 +4,13 @@ This plugin makes available the control functions defined by the [Figwheel](http
 
 This enables you to do a few things:
 
-* Start Figwheel from vim.
+1. Start Figwheel from vim.
     *`:FigwheelStart` will start the default cljsbuild.
     *`:FigwheelStart "dev" "devcards"` will start the cljsbuilds defined with the "dev" and "devcards" ids.
-* Stop Figwheel from vim.
-* Reset Figwheel from vim.
-* Clean Figwheel from vim.
-* Get quick access to Fighwheels status.
+2. Stop Figwheel from vim.
+3. Reset Figwheel from vim.
+4. Clean Figwheel from vim.
+5. Get quick access to Fighwheels status.
 
 ![Figwheel status](http://i.imgur.com/Wq9HHgW.png)
 
