@@ -17,7 +17,7 @@ This enables you to do a few things:
 ## Installation
 
 Install using your favourite plugin manager,
-I use [vim-plug][https://github.com/junegunn/vim-plug]
+I use [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
 Plug 'markwoodhall/vim-figwheel'
