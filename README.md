@@ -1,3 +1,5 @@
+## Purpose
+
 This plugin makes available the control functions defined by the [Figwheel](https://github.com/bhauman/lein-figwheel) as vimscript functions.
 
 This enables you to do a few things:
@@ -12,7 +14,7 @@ This enables you to do a few things:
 4. Clean Figwheel from vim.
 5. Get quick access to Fighwheels status.
 
-![Figwheel status](http://imgur.com/Wq9HHgW)
+![Figwheel status](http://i.imgur.com/Wq9HHgW.png)
 
 ## Installation
 
