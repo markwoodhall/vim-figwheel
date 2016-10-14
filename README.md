@@ -35,17 +35,17 @@ Plug 'tpope/vim-fireplace'
 The following functions are made available:
 
 ```vim
-:FigwheelStart :exe s:Start(<q-args>)
-:FigwheelSwitch :exe s:Switch(<q-args>)
-:FigwheelClean :exe s:Clean(<q-args>)
-:FigwheelBuild :exe s:Build(<q-args>)
+:FigwheelStart " Starts the default Figwheel build or an optional list of builds
+:FigwheelSwitch " Switch to a Figwheel build
+:FigwheelClean " Deletes compiled cljs target files for the specfied builds
+:FigwheelBuild " Builds a fighweel build once
 ```
 
 ```vim
-:FigwheelReset :exe s:Reset()
-:FigwheelStop :exe s:Stop()
-:FigwheelStatus :exe s:Status()
-:Figgieback :exe s:Figgieback()
+:FigwheelReset " Stops, cleans and starts Figwheel autobuild
+:FigwheelStop  " Stops Figwheel autobuild
+:FigwheelStatus " Gets the current state of Figwheel
+:Figgieback " Piggie backs onto the Fighweel browser REPL
 ```
 
 The above functions map to the control functions defined by the Figwheel repl. You can read more [here](https://github.com/bhauman/lein-figwheel)
