@@ -11,7 +11,7 @@ endif
 function! s:Start(...)
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
   if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild ".join(a:000, ' ').")"
+    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(a:000, '" "')."\")"
   endif
   execute "Eval ".evalString
 endfunction
@@ -24,7 +24,7 @@ endfunction
 function! s:Switch(...)
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
   if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/switch-to-build ".join(a:000, ' ').")"
+    let evalString = evalString."(figwheel-sidecar.repl-api/switch-to-build \"".join(a:000, ' ')."\")"
   endif
   execute "Eval ".evalString
 endfunction
@@ -37,17 +37,16 @@ endfunction
 function! s:Clean(...)
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
   if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/clean-builds ".join(a:000, ' ').")"
+    let evalString = evalString."(figwheel-sidecar.repl-api/clean-builds \"".join(a:000, ' ')."\")"
   endif
   execute "Eval ".evalString
 endfunction
 
-function! s:Build(...)
-  let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
-  if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/build-once ".join(a:000, ' ').")"
-  endif
-  execute "Eval ".evalString
+function! s:Builds()
+  let evalString = "(do (require '[figwheel-sidecar.system]) (keys (figwheel-sidecar.system/get-project-builds)))"
+  let figwheelBuilds = fireplace#eval(evalString)
+  echomsg figwheelBuilds
+  return "'".figwheelBuilds."'"
 endfunction
 
 function! s:Status()
@@ -56,17 +55,36 @@ function! s:Status()
   execute "Eval ".evalString
 endfunction
 
+function! s:Build(...)
+  let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
+  if a:0 > 0 && a:1 != ''
+    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(a:000, '" "')."\")"
+  endif
+  execute "Eval ".evalString
+endfunction
+
 function! s:Figgieback()
   execute "Piggieback (do (require '[figwheel-sidecar.repl-api]) (figwheel-sidecar.repl-api/repl-env))"
 endfunction
 
+function! s:BuildsComplete(A, L, P) abort
+  if strpart(a:L, 0, a:P) !~# ' [[:alnum:]-]\+ '
+    let cmds = s:Builds()
+    let cmds = substitute(cmds, ")", "]", "")
+    let cmds = substitute(cmds, "(", "[", "")
+    let cmds = substitute(cmds, " ", ", ", "g")
+    let cmds = eval(cmds)
+    return filter(eval(cmds), 'strpart(v:val, 0, strlen(a:A)) ==# a:A')
+  endif
+endfunction
 
-autocmd FileType clojure command! -nargs=* -buffer FigwheelStart :exe s:Start(<q-args>)
-autocmd FileType clojure command! -nargs=* -buffer FigwheelSwitch :exe s:Switch(<q-args>)
-autocmd FileType clojure command! -nargs=* -buffer FigwheelClean :exe s:Clean(<q-args>)
-autocmd FileType clojure command! -nargs=* -buffer FigwheelBuild :exe s:Build(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelStart :exe s:Start(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelSwitch :exe s:Switch(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelClean :exe s:Clean(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelBuild :exe s:Build(<q-args>)
 
 autocmd FileType clojure command! -buffer FigwheelReset :exe s:Reset()
 autocmd FileType clojure command! -buffer FigwheelStop :exe s:Stop()
+autocmd FileType clojure command! -buffer FigwheelBuilds :exe s:Builds()
 autocmd FileType clojure command! -buffer FigwheelStatus :exe s:Status()
 autocmd FileType clojure command! -buffer Figgieback :exe s:Figgieback()
