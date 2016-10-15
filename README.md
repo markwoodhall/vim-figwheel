@@ -8,7 +8,7 @@ This enables you to do a few things:
   * `:FigwheelStart` will start the default cljsbuild.
   * `:FigwheelStart dev, devcards` will start the cljsbuilds defined with the "dev" and "devcards" ids.
 
-Not the space between "dev," and "devcards" above. When specifying multiple builds to suitable functions they should
+Note the space between "dev," and "devcards" above. When specifying multiple build arguments to suitable functions they should
 always follow this format. For now.
 
 ![FigwheelStart image](http://i.imgur.com/rISbtXw.png)
