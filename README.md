@@ -29,7 +29,7 @@ This enables you to do a few things:
 
 ### Get list of Figwheel build ids in vim
 
-![FigwheelBuilds image]([Imgur](http://i.imgur.com/3AJ84B5.png)
+![FigwheelBuilds image](http://i.imgur.com/3AJ84B5.png)
 
 ## Installation
 
