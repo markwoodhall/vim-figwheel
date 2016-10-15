@@ -22,7 +22,7 @@ This enables you to do a few things:
 ### Clean Figwheel from vim.
   * `:FigwheelClean devcards` will clean the build defined with the "devcards" id.
 
-[FigwheelClean image](http://i.imgur.com/vVWTqW1.png)
+![FigwheelClean image](http://i.imgur.com/vVWTqW1.png)
 ### Get quick access to Fighwheels status.
 
 ![Figwheel status](http://i.imgur.com/Wq9HHgW.png)
