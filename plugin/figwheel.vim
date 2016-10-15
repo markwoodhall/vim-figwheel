@@ -8,10 +8,11 @@ if !exists("*fireplace#eval")
   finish
 endif
 
-function! s:Start(...)
+function! s:Start(buildsString)
+  let builds = split(a:buildsString, ", ")
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
-  if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(a:000, '" "')."\")"
+  if len(builds) > 0
+    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(builds, '" "')."\")"
   endif
   execute "Eval ".evalString
 endfunction
@@ -21,10 +22,11 @@ function! s:Stop()
   execute "Eval ".evalString
 endfunction
 
-function! s:Switch(...)
+function! s:Switch(buildsString)
+  let builds = split(a:buildsString, ", ")
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
-  if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/switch-to-build \"".join(a:000, ' ')."\")"
+  if len(builds) > 0
+    let evalString = evalString."(figwheel-sidecar.repl-api/switch-to-build \"".join(builds, '" "')."\")"
   endif
   execute "Eval ".evalString
 endfunction
@@ -34,10 +36,11 @@ function! s:Reset()
   execute "Eval ".evalString
 endfunction
 
-function! s:Clean(...)
+function! s:Clean(buildsString)
+  let builds = split(a:buildsString, ", ")
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
-  if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/clean-builds \"".join(a:000, ' ')."\")"
+  if len(builds) > 0
+    let evalString = evalString."(figwheel-sidecar.repl-api/clean-builds \"".join(builds, '" "')."\")"
   endif
   execute "Eval ".evalString
 endfunction
@@ -55,10 +58,11 @@ function! s:Status()
   execute "Eval ".evalString
 endfunction
 
-function! s:Build(...)
+function! s:Build(buildsString)
+  let builds = split(a:buildsString, ", ")
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
-  if a:0 > 0 && a:1 != ''
-    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(a:000, '" "')."\")"
+  if len(builds) > 0
+    let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(builds, '" "')."\")"
   endif
   execute "Eval ".evalString
 endfunction
