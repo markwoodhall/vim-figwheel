@@ -18,8 +18,7 @@ This enables you to do a few things:
 ### Switch Figwheel from vim.
   * `:FigwheelSwitch devcards` will switch to the build defined with the "devcards" id.
 
-![FigwheelSwitch image](http://i.imgur.com/MLtB77h.gifv)
-### Reset Figwheel from vim.
+![FigwheelSwitch image](http://i.imgur.com/MLtB77h.png)
 ### Clean Figwheel from vim.
 ### Get quick access to Fighwheels status.
 
