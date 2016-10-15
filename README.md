@@ -23,9 +23,13 @@ This enables you to do a few things:
   * `:FigwheelClean devcards` will clean the build defined with the "devcards" id.
 
 ![FigwheelClean image](http://i.imgur.com/vVWTqW1.png)
-### Get quick access to Fighwheels status.
+### Get quick access to Fighwheels status in vim.
 
 ![Figwheel status](http://i.imgur.com/Wq9HHgW.png)
+
+### Get list of Figwheel build ids in vim
+
+![FigwheelBuilds image]([Imgur](http://i.imgur.com/3AJ84B5.png)
 
 ## Installation
 
