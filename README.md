@@ -59,6 +59,7 @@ The following functions are made available:
 ```
 
 ```vim
+:FigwheelBuilds " Gets a list of Figwheel build ids
 :FigwheelReset  " Stops, cleans and starts Figwheel autobuild
 :FigwheelStop   " Stops Figwheel autobuild
 :FigwheelStatus " Gets the current state of Figwheel
