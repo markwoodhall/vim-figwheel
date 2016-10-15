@@ -8,7 +8,7 @@ This enables you to do a few things:
   * `:FigwheelStart` will start the default cljsbuild.
   * `:FigwheelStart "dev" "devcards"` will start the cljsbuilds defined with the "dev" and "devcards" ids.
 
-![FigwheelStart image](http://i.imgur.com/rISbtXw.gifv)
+![FigwheelStart image](http://i.imgur.com/rISbtXw.png)
 
 2. Stop Figwheel from vim.
 3. Reset Figwheel from vim.
