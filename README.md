@@ -43,12 +43,18 @@ I use [vim-plug](https://github.com/junegunn/vim-plug)
 Plug 'markwoodhall/vim-figwheel'
 ```
 
+## Requirements
+
+This plugin requires a Figwheel project, perhaps created with `lein new figwheel`, and the Fighweel version must be at least `0.5.8`.
+
 This plugin makes use of [vim-fireplace](https://github.com/tpope/vim-fireplace) so you will need to install this as well.
 
 ```vim
 Plug 'tpope/vim-fireplace'
 
 ```
+
+As is typical for [vim-fireplace](https://github.com/tpope/vim-fireplace) you will need a running REPL, `lein repl`.
 
 ## Usage
 
