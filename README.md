@@ -75,10 +75,6 @@ The following functions are made available:
 :Figgieback     " Piggiebacks onto the Figwheel browser REPL
 ```
 
-## Tips
-
-Use `Figwheel*` commands when in a Clojure buffer, use Figgieback in a ClojureScript buffer to enable the use of Figwheels ClojureScript REPL on top of a regular nREPL session.
-
 The above functions map to the control functions defined by the Figwheel REPL. You can read more [here](https://github.com/bhauman/lein-figwheel)
 
 ```clojure
@@ -90,6 +86,10 @@ The above functions map to the control functions defined by the Figwheel REPL. Y
  (clean-builds [id ..])      ;; deletes compiled cljs target files
  (fig-status)                ;; displays current state of system
  ```
+
+## Tips
+
+Use `Figwheel*` commands when in a Clojure buffer, use Figgieback in a ClojureScript buffer to enable the use of Figwheels ClojureScript REPL on top of a regular nREPL session.
 
 ## License
 Copyright © Mark Woodhall. Distributed under the same terms as Vim itself. See `:help license`
