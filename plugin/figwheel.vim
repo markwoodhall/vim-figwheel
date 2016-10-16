@@ -46,7 +46,7 @@ function! s:Clean(buildsString)
 endfunction
 
 function! s:Builds()
-  let evalString = "(do (require '[figwheel-sidecar.system]) (keys (figwheel-sidecar.system/get-project-builds)))"
+  let evalString = "(do (require '[figwheel-sidecar.system]) (vec (keys (figwheel-sidecar.system/get-project-builds))))"
   let figwheelBuilds = fireplace#eval(evalString)
   echomsg figwheelBuilds
   return "'".figwheelBuilds."'"
@@ -74,8 +74,6 @@ endfunction
 function! s:BuildsComplete(A, L, P) abort
   if strpart(a:L, 0, a:P) !~# ' [[:alnum:]-]\+ '
     let cmds = s:Builds()
-    let cmds = substitute(cmds, ")", "]", "")
-    let cmds = substitute(cmds, "(", "[", "")
     let cmds = substitute(cmds, " ", ", ", "g")
     let cmds = eval(cmds)
     return filter(eval(cmds), 'strpart(v:val, 0, strlen(a:A)) ==# a:A')
