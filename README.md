@@ -75,6 +75,10 @@ The following functions are made available:
 :Figgieback     " Piggiebacks onto the Figwheel browser REPL
 ```
 
+## Tips
+
+Use `Figwheel*` commands when in a Clojure buffer, use Figgieback in a ClojureScript buffer to enable the use of Figwheels ClojureScript REPL on top of a regular nREPL session.
+
 The above functions map to the control functions defined by the Figwheel REPL. You can read more [here](https://github.com/bhauman/lein-figwheel)
 
 ```clojure
