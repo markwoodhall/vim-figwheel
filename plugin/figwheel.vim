@@ -3,10 +3,17 @@ if exists('g:loaded_figwheel') || &cp
 endif
 let g:loaded_figwheel = 1
 
+let s:figwheel_dev_ns = "user"
+
 if !exists("*fireplace#eval")
   echoerr "vim-figwheel requires the vim-fireplace plugin but it is not currently loaded or installed."
   finish
 endif
+
+function! s:SendToRepl(eval)
+  let output = fireplace#session_eval(a:eval, {"ns": s:figwheel_dev_ns, 'session': 0})
+  return output
+endfunction
 
 function! s:Start(buildsString)
   let builds = split(a:buildsString, ", ")
@@ -14,12 +21,12 @@ function! s:Start(buildsString)
   if len(builds) > 0
     let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(builds, '" "')."\")"
   endif
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Stop()
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/stop-autobuild))"
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Switch(buildsString)
@@ -28,12 +35,12 @@ function! s:Switch(buildsString)
   if len(builds) > 0
     let evalString = evalString."(figwheel-sidecar.repl-api/switch-to-build \"".join(builds, '" "')."\")"
   endif
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Reset()
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (figwheel-sidecar.repl-api/reset-autobuild))"
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Clean(buildsString)
@@ -42,12 +49,12 @@ function! s:Clean(buildsString)
   if len(builds) > 0
     let evalString = evalString."(figwheel-sidecar.repl-api/clean-builds \"".join(builds, '" "')."\")"
   endif
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Builds()
   let evalString = "(do (require '[figwheel-sidecar.system]) (vec (keys (figwheel-sidecar.system/get-project-builds))))"
-  let figwheelBuilds = fireplace#eval(evalString)
+  let figwheelBuilds = s:SendToRepl(evalString)
   echomsg figwheelBuilds
   return "'".figwheelBuilds."'"
 endfunction
@@ -55,7 +62,7 @@ endfunction
 function! s:Status()
   let evalString = "(do (require '[figwheel-sidecar.repl-api]) (when (not (figwheel-sidecar.repl-api/figwheel-running?)) (figwheel-sidecar.repl-api/start-figwheel!)))"
   let evalString = evalString."(figwheel-sidecar.repl-api/fig-status)"
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Build(buildsString)
@@ -64,7 +71,7 @@ function! s:Build(buildsString)
   if len(builds) > 0
     let evalString = evalString."(figwheel-sidecar.repl-api/start-autobuild \"".join(builds, '" "')."\")"
   endif
-  execute "Eval ".evalString
+  call s:SendToRepl(evalString)
 endfunction
 
 function! s:Figgieback()
