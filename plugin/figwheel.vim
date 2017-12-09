@@ -87,13 +87,13 @@ function! s:BuildsComplete(A, L, P) abort
   endif
 endfunction
 
-autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelStart :exe s:Start(<q-args>)
-autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelSwitch :exe s:Switch(<q-args>)
-autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelClean :exe s:Clean(<q-args>)
-autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelBuild :exe s:Build(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelStart :call s:Start(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelSwitch :call s:Switch(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelClean :call s:Clean(<q-args>)
+autocmd FileType clojure command! -nargs=* -complete=customlist,s:BuildsComplete -buffer FigwheelBuild :call s:Build(<q-args>)
 
-autocmd FileType clojure command! -buffer FigwheelReset :exe s:Reset()
-autocmd FileType clojure command! -buffer FigwheelStop :exe s:Stop()
-autocmd FileType clojure command! -buffer FigwheelBuilds :exe s:Builds()
-autocmd FileType clojure command! -buffer FigwheelStatus :exe s:Status()
-autocmd FileType clojure command! -buffer Figgieback :exe s:Figgieback()
+autocmd FileType clojure command! -buffer FigwheelReset :call s:Reset()
+autocmd FileType clojure command! -buffer FigwheelStop :call s:Stop()
+autocmd FileType clojure command! -buffer FigwheelBuilds :call s:Builds()
+autocmd FileType clojure command! -buffer FigwheelStatus :call s:Status()
+autocmd FileType clojure command! -buffer Figgieback :call s:Figgieback()
