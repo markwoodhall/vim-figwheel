@@ -5,7 +5,7 @@ let g:loaded_figwheel = 1
 
 let s:figwheel_dev_ns = "user"
 
-if !exists("*fireplace#eval")
+if g:loaded_fireplace != 1
   echoerr "vim-figwheel requires the vim-fireplace plugin but it is not currently loaded or installed."
   finish
 endif
