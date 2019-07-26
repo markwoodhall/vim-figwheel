@@ -75,7 +75,7 @@ function! s:Build(buildsString)
 endfunction
 
 function! s:Figgieback()
-  execute "Piggieback (do (require '[figwheel-sidecar.repl-api]) (figwheel-sidecar.repl-api/repl-env))"
+  execute "Piggieback (figwheel-sidecar.repl-api/repl-env)"
 endfunction
 
 function! s:BuildsComplete(A, L, P) abort
